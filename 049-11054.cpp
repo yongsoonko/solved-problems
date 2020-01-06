@@ -25,7 +25,7 @@ int main() {
     cin >> input;
     v.push_back(input);
   }
-  
+
   m1.insert(make_pair(0, 1));
   for (int i = 1; i < n; i++) {
     int max = 0;
@@ -63,4 +63,3 @@ int main() {
   float _time = (float)(clock() - start) / CLOCKS_PER_SEC;
   // cout << "\ntime : " << _time;
 }
-
