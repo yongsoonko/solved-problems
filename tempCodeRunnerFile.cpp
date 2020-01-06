@@ -1,6 +1,2 @@
-  for(vector<int> tmp: v) {
-    for(int i: tmp) {
-      cout << i << ' ';
-    }
-    cout << '\n';
-  }
+  v.reserve(n);
+  ans.assign(n, 0);
