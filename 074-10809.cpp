@@ -1,7 +1,7 @@
 #include <time.h>
 #include <iostream>
 #include <string>
-#include <stack>
+#include <vector>
 
 using namespace std;
 
@@ -11,23 +11,18 @@ int main() {
   cout.tie(NULL);
   clock_t start = clock();
 
-  int ans = 0;
   string str;
-  stack<char> s;
   cin >> str;
+  vector<int> cnt(26, -1);
+
   for(int i=0; i<str.length(); i++) {
-    if(str[i] == '(') {
-      s.push(str[i]);
-    } else {
-      s.pop();
-      if(str[i-1] == '(') {
-        ans += s.size(); 
-      } else {
-        ans++;
-      }
-    }
-  }  
-  cout << ans;
+    int idx = str[i] - 'a';
+    if(cnt[idx] == -1) cnt[idx] = i;
+  }
+
+  for(int i: cnt) {
+    cout << i << ' ';
+  }
 
   float _time = (float)(clock() - start) / CLOCKS_PER_SEC;
   // cout << "\ntime : " << _time;
