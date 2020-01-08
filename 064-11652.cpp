@@ -48,10 +48,10 @@ int main() {
   //   cout << a.first << ' ' << a.second << '\n';
   // }
 
-  sort(v2.begin(), v2.end(), [](auto a, auto b) -> bool {
+  stable_sort(v2.begin(), v2.end(), [](auto a, auto b) -> bool {
     return a.second < b.second;
   });
-  sort(v2.begin(), v2.end(), [](auto a, auto b) -> bool {
+  stable_sort(v2.begin(), v2.end(), [](auto a, auto b) -> bool {
     return a.first > b.first;
   });
   cout << v2[0].second;
