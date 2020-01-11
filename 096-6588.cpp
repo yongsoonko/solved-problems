@@ -70,7 +70,6 @@ int main() {
 
   do {
     for (int i = search(0, v2.size() - 1, n); i >= 0; i--) {
-      z++;
       if (v[n - v2[i]]) {
         cout << n << " = " << n - v2[i] << " + " << v2[i] << '\n';
         break;
