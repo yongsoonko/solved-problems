@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <array>
 #include <iostream>
 #include <queue>
 #include <string>
@@ -8,31 +9,29 @@
 using namespace std;
 using ll = long long;
 using pll = pair<ll, ll>;
+using pii = pair<int, int>;
+using ai3 = array<int, 3>;
 
-void qs(vector<int> &v, int left, int right) {
+void qsort(int left, int right, vector<int> &v) {
   if (left >= right)
     return;
 
   int i = left + 1, j = right, pivot = v[left];
   while (i <= j) {
-    // 피벗과 같은 수를 어느 영역에 둘지를 정해야 한다.
-    // 피벗 기준, 왼쪽은 피벗 보다 작거나 같은 수
-    // 오른쪽은 피벗 보다 큰 수
     while (i <= right && v[i] <= pivot && i++);
     while (j >= left + 1 && v[j] > pivot && j--);
-    if(i < j) 
+    if (i < j)
       swap(v[i++], v[j--]);
-  } 
-
+  }
   swap(v[left], v[j]);
-  qs(v, left, j - 1);
-  qs(v, j + 1, right);
+  qsort(left, j - 1, v);
+  qsort(j + 1, right, v);
 }
 
 int main() {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
-  clock_t _start = clock();
+  clock_t start = clock();
 
   int n;
   cin >> n;
@@ -45,11 +44,12 @@ int main() {
     cout << i << ' ';
   cout << '\n';
 
-  qs(v, 0, v.size() - 1);
-  // sort(v.begin(), v.end());
+  qsort(0, n - 1, v);
+
   for (int i : v)
     cout << i << ' ';
+  cout << '\n';
 
-  float _time = (float)(clock() - _start) / CLOCKS_PER_SEC;
-  // cout << "\ntime : " << _time;
+  float time = (float)(clock() - start) / CLOCKS_PER_SEC;
+  // cout << "\ntime : " << time;
 }
